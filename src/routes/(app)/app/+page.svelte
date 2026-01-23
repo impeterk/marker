@@ -14,6 +14,9 @@
 </section>
 
 <style>
+	.toolbar {
+		background-color: var(--gray-10);
+	}
 	.bordered {
 		border: 1px solid var(--surface-2);
 		border-radius: var(--radius-2);
