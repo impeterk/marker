@@ -27,7 +27,7 @@
 			<div class="line-number" style:color={row_color}>{i + 1}</div>
 		{/each}
 	</div>
-	<textarea name="raw_input" class="raw_input" bind:value={input.current}></textarea>
+	<div class="raw_input" bind:innerText={input.current} contenteditable></div>
 
 	<div class="highlight" bind:this={coverElement}>
 		{@html html}
@@ -56,39 +56,53 @@
 		padding-right: var(--size-4);
 		position: relative;
 		width: 100%;
+		max-width: 100%;
 		display: grid;
 		grid-template-columns: auto 1fr;
 		height: 100%;
-		overflow: auto;
+		overflow: hidden;
+		overflow-y: auto;
 		:global {
 			.shiki {
 				height: 100%;
 				max-inline-size: unset;
 				background-color: transparent !important;
 				counter-reset: line;
+				font-family: inherit;
+				code {
+					width: 100%;
+					min-width: 0; /* crucial */
+					white-space: pre-wrap;
+					word-break: break-word;
+					overflow-wrap: anywhere;
+				}
+				span {
+					font-style: normal !important;
+				}
 			}
 		}
 	}
 
 	.highlight,
-	textarea {
+	.raw_input {
 		grid-column: 2;
 		grid-row: 1;
 		height: 100%;
 		width: 100%;
+		min-width: 0; /* crucial */
+		white-space: pre-wrap;
+		word-break: break-word;
+		overflow-wrap: anywhere;
 	}
 	.highlight {
 		pointer-events: none;
 		user-select: none;
 	}
-	textarea {
-		resize: none;
+	.raw_input {
 		color: transparent;
 		overscroll-behavior: none;
-		padding: 0;
-		background-color: transparent;
 	}
-	textarea:focus {
+	.raw_input:focus {
 		outline: none;
 	}
 </style>
