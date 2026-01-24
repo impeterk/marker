@@ -15,14 +15,11 @@
 	--size-xl: 1280px;
 }
 
-html {
-	background-color: var(--surface-1);
-	color: var(--text-1);
-}
-
 html,
 body {
 	height: 100%;
+	background-color: var(--surface-1);
+	color: var(--text-1);
 }
 
 .container {
